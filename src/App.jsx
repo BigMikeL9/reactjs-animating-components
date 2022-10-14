@@ -63,7 +63,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <div className="App">
@@ -88,6 +88,12 @@ class App extends Component {
           timeout={duration}
           mountOnEnter // ⭐ mounts the component on 'entering' state
           unmountOnExit // ⭐ unmounts the component on 'exited' state
+          onEnter={(el, isAppearing) => console.log("onEnter")}
+          onEntering={(el, isAppearing) => console.log("onEntering")}
+          onEntered={(el, isAppearing) => console.log("onEntered")}
+          onExit={() => console.log("onExit")}
+          onExiting={() => console.log("onExiting")}
+          onExited={() => console.log("onExited")}
         >
           {(state) => (
             <div
@@ -106,27 +112,12 @@ class App extends Component {
         <div>---------------------------------------------------------</div>
 
         {/* --------  MODAL --------  */}
-        <Transition in={this.state.isModalOpen} timeout={duration}>
-          {(state) => (
-            <p>
-              Transition state of MODAL: <strong>{state}</strong>
-            </p>
-          )}
-        </Transition>
-
-        <Transition
-          in={this.state.isModalOpen}
-          timeout={duration}
-          mountOnEnter
-          unmountOnExit
-        >
-          {(state) => (
-            <Modal
-              closeModal={this.closeModalHandler}
-              transitionState={state}
-            />
-          )}
-        </Transition>
+        {/* 'mount' and 'unmount' of MODAL is animated through the '<CSSTransition/>' component */}
+        <Modal
+          closeModal={this.closeModalHandler}
+          isModalOpen={this.state.isModalOpen}
+          transitionDuration={duration}
+        />
 
         {this.state.isModalOpen && <Backdrop />}
 

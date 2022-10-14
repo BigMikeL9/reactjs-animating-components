@@ -1,22 +1,40 @@
 .List {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    width: 280px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 280px;
 }
 
-.ListItem {
-    margin: 0;
-    padding: 10px;
-    box-sizing: border-box;
-    width: 100%;
-    border: 1px solid #521751;
-    background-color: white;
-    text-align: center;
-    cursor: pointer;
+.list__item {
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #521751;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
 }
 
-.ListItem:hover,
-.ListItem:active {
-    background-color: #ccc;
+.list__item:hover,
+.list__item:active {
+  background-color: #ccc;
+}
+
+/* '<CSSTransition/>' component will add these classes 👇 depending on 'mount'/'unmount' state of the component */
+.list__item-enter {
+  opacity: 0;
+}
+
+.list__item-enter-active {
+  opacity: 1;
+}
+
+.list__item-exit {
+  opacity: 1;
+}
+
+.list__item-exit-active {
+  opacity: 0;
 }

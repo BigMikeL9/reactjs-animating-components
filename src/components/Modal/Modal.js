@@ -1,22 +1,38 @@
 import React from "react";
+import CSSTransition from "react-transition-group/CSSTransition";
+import Transition from "react-transition-group/Transition";
 
 import "./Modal.css";
 
 const modal = (props) => {
-  console.log(props.transitionState);
-
-  const classes = `Modal ${
-    props.transitionState === "entering" ? "showModal" : ""
-  }${props.transitionState === "exiting" ? "hideModal" : ""}`;
+  // console.log(props);
 
   return (
-    <div className={classes}>
-      <h1>A Modal</h1>
+    <>
+      <Transition in={props.isModalOpen} timeout={props.transitionDuration}>
+        {(state) => (
+          <p>
+            Transition state of MODAL: <strong>{state}</strong>
+          </p>
+        )}
+      </Transition>
 
-      <button className="Button" onClick={props.closeModal}>
-        Dismiss
-      </button>
-    </div>
+      <CSSTransition
+        in={props.isModalOpen}
+        timeout={props.transitionDuration}
+        classNames="modal" //  <--  see docs
+        mountOnEnter
+        unmountOnExit
+      >
+        <div className="modal">
+          <h1>A Modal</h1>
+
+          <button className="Button" onClick={props.closeModal}>
+            Dismiss
+          </button>
+        </div>
+      </CSSTransition>
+    </>
   );
 };
 

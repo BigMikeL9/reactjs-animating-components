@@ -1,4 +1,4 @@
-.Modal {
+.modal {
   position: fixed;
   z-index: 200;
   border: 1px solid #eee;
@@ -12,11 +12,18 @@
   width: 50%;
 }
 
-.showModal {
+/* '<CSSTransition/>' component will add these classes 👇 depending on 'mount'/'unmount' state of the component */
+.modal-enter {
+}
+
+.modal-enter-active {
   animation: openModal 1s ease-out forwards;
 }
 
-.hideModal {
+.modal-exit {
+}
+
+.modal-exit-active {
   animation: closeModal 1s ease-out forwards;
 }
 
